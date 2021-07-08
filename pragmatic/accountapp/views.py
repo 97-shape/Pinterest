@@ -1,7 +1,13 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+
 from accountapp.models import HelloWorld
+
+# 21강 회원가입 구현
+from django.views.generic import CreateView
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -19,3 +25,13 @@ def hello_world(request):
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
+
+
+
+class AccountCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    # reverse / reverse_lazy 차이 함수와 클래스가 파이썬에서 불러와지는 방식이 달라서
+    # reverse : 함수 / reverse_lazy : 클래스
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'accountapp/create.html'
