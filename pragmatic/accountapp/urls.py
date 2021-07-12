@@ -1,6 +1,7 @@
 from django.urls import path
 
 from accountapp.views import hello_world, AccountCreateView, AccountDetailView
+from accountapp.views import AccountUpdateView
 
 
 # 22강 로그인/아웃
@@ -20,5 +21,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
 
     path('detail/<int:pk>', AccountDetailView.as_view(), name='detail'),
+    path('update/<int:pk>', AccountUpdateView.as_view(), name='update'),
 
 ]
