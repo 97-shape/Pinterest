@@ -1,6 +1,6 @@
 from django.urls import path
 
-from accountapp.views import hello_world, AccountCreateView
+from accountapp.views import hello_world, AccountCreateView, AccountDetailView
 
 
 # 22강 로그인/아웃
@@ -18,5 +18,7 @@ urlpatterns = [
 
     path('login/', LoginView.as_view(template_name='accountapp/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+
+    path('detail/<int:pk>', AccountDetailView.as_view(), name='detail'),
 
 ]

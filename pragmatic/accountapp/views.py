@@ -9,6 +9,9 @@ from django.views.generic import CreateView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
+# 24강 회원정보
+from django.views.generic import DetailView
+
 # Create your views here.
 
 def hello_world(request):
@@ -35,3 +38,8 @@ class AccountCreateView(CreateView):
     # reverse : 함수 / reverse_lazy : 클래스
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/create.html'
+
+class AccountDetailView(DetailView):
+    model = User
+    context_object_name = 'target_user'
+    template_name = 'accountapp/detail.html'
