@@ -16,6 +16,9 @@ from django.views.generic import DetailView
 from django.views.generic import UpdateView
 from accountapp.forms import AccountUpdateForm
 
+# 26강 계정 삭제
+from django.views.generic import DeleteView
+
 # Create your views here.
 
 def hello_world(request):
@@ -53,3 +56,8 @@ class AccountUpdateView(UpdateView):
     form_class = AccountUpdateForm
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
+
+class AccountDeleteView(DeleteView):
+    model = User
+    success_url = reverse_lazy('accountapp:login')
+    template_name = 'accountapp/delete.html'
