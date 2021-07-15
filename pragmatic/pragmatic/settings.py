@@ -140,3 +140,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # 22강 LOGIN_REDIRECT_URL 설정
 LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
+
+# 29강 media
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
