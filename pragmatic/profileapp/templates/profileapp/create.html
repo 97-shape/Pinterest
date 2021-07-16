@@ -9,7 +9,8 @@
             Profile Create
         </h4>
     </div>
-    <form action="{% url 'profileapp:create' %}" method="post">
+    <!--   31강 multipart/form-data   -->
+    <form action="{% url 'profileapp:create' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form %}
         <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
