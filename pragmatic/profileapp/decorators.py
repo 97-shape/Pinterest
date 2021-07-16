@@ -1,4 +1,4 @@
-from django.contrib.auth.models import Profile
+from profileapp.models import Profile
 from django.http import HttpResponseForbidden
 
 def profile_ownership_required(func):
