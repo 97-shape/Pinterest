@@ -9,6 +9,8 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
 from articleapp.decorators import article_ownership_required
+# 36강
+from django.views.generic import ListView
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -49,3 +51,11 @@ class ArticleDeleteView(DeleteView):
     context_object_name = 'target_article'
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
+    
+    # 36강
+class ArticleListView(ListView):
+    model = Article
+    context_object_name = 'article_list'
+    template_name = 'articleapp/list.html'
+    paginate_by = 5
+    
