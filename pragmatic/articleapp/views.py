@@ -11,6 +11,9 @@ from articleapp.models import Article
 from articleapp.decorators import article_ownership_required
 # 36강
 from django.views.generic import ListView
+# 37강
+from django.views.generic.edit import FormMixin
+from commentapp.forms import CommentCreationForm
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -28,8 +31,9 @@ class ArticleCreateView(CreateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
     
-class ArticleDetailView(DetailView):
+class ArticleDetailView(DetailView, FormMixin):
     model = Article
+    form_class = CommentCreationForm
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
 
