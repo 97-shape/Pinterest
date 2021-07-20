@@ -1,4 +1,4 @@
-"""pragmatic URL Configuration
+"""projectapp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -13,19 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from django.views.generic import TemplateView
 
-#32강
-from django.conf.urls.static import static
-from django.conf import settings
+from projectapp.views import ProjectlistView, ProjectCreateView, ProjectDetailView
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('accountapp.urls')),
-    path('profiles/', include('profileapp.urls')),
-    path('articles/', include('articleapp.urls')),
-    path('comments/', include('commentapp.urls')),
-    path('projects/', include('projectapp.urls')),
-    
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+app_name = 'projectapp'
+
+urlpatterns =[
+    path('list/', ProjectlistView.as_view(), name='list'),
+
+    path('create/', ProjectCreateView.as_view(), name='create'),
+    path('detail/<int:pk>', ProjectDetailView.as_view(), name='detail'),
+]
