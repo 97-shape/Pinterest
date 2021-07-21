@@ -4,7 +4,6 @@
 {% block content %}
 
 <style>
-    
     .container {
         padding: 0;
         margin: 0, auto;
@@ -28,7 +27,6 @@
 </style>
 {% if article_list %}
 <div class="container">
-    
     {% for article in article_list %}
     <a href="{% url 'articleapp:detail' pk=article.pk %}">
         {% include 'snippets/card.html' with article=article %}

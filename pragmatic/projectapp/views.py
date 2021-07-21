@@ -12,8 +12,8 @@ from projectapp.models import Project
 
 
 
-@method_decorator(project_ownership_required, 'get')
-@method_decorator(project_ownership_required, 'post')
+# @method_decorator(project_ownership_required, 'get')
+# @method_decorator(project_ownership_required, 'post')
 class ProjectCreateView(CreateView):
     model = Project
     form_class = ProjectCreationForm
@@ -24,11 +24,11 @@ class ProjectCreateView(CreateView):
 
 class ProjectDetailView(DetailView):
     model = Project
-    form_class = ProjectCreationForm
+    context_object_name = 'target_project'
     template_name = 'projectapp/detail.html'
     
 class ProjectListView(ListView):
     model = Project
     context_object_name = 'project_list'
     template_name = 'projectapp/list.html'
-    paginate_by = 5
+    paginate_by = 25
