@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView
 from django.utils.decorators import method_decorator
-from projectapp.decorators import project_ownership_required
+from django.contrib.auth.decorators import login_required
 
 from django.views.generic import ListView
 
@@ -12,8 +12,8 @@ from projectapp.models import Project
 
 
 
-# @method_decorator(project_ownership_required, 'get')
-# @method_decorator(project_ownership_required, 'post')
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class ProjectCreateView(CreateView):
     model = Project
     form_class = ProjectCreationForm
