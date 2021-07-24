@@ -10,3 +10,7 @@ class Project(models.Model):
     description = models.TextField(null=True)
     
     created_at = models.DateField(auto_now_add=True, null=True)
+    
+    # article 생성 시 Project 순번, 이름 보이도록
+    def __str__(self):
+        return f'{self.pk} : {self.title}'
